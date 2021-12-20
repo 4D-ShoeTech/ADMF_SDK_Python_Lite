@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from zipfile import ZipFile
+from zipfile import ZipFile, ZipExtFile
 
 import bson
 import copy
@@ -30,15 +30,13 @@ class AdmfLite:
         except Exception as e:
             pass
 
-    def isValid(self):
+    def isValid(self) -> bool:
         return self.__isOK
 
-    def bsonDict(self):
+    def bsonDict(self) -> dict:
         return copy.deepcopy(self.__bsonDict)
 
-
-
-    def getBinaryFile(self, fileName):
+    def getBinaryFile(self, fileName: str) -> ZipExtFile:
         try:
             return self.zipFile.open(fileName)
         except Exception as e:
